@@ -15,6 +15,10 @@ const CGFloat MKAToastViewDefaultHeight = 80.f;
 
 static const NSTimeInterval DefaultAnimationDuration = .3;
 
+static MKAToastViewConfiguration *_config = nil;
+
+#pragma mark - MKAToastView
+
 @interface MKAToastView ()
 @property (nonatomic) UILabel *label;
 @end
@@ -106,22 +110,44 @@ static const NSTimeInterval DefaultAnimationDuration = .3;
 + (void)showInView:(UIView *)view withMessage:(NSString *)message
           delegate:(id<MKAToastViewDelegate>)delegate timeInterval:(NSTimeInterval)t {
     
-    MKAToastView *toastView = [[MKAToastView alloc] initWithMessage:message
-                                                              width:MKAToastViewDefaultWidth
-                                                             height:MKAToastViewDefaultHeight];
-    toastView.delegate = delegate;
-    [toastView showInView:view withTimeInterval:t];
+    [self showInView:view withMessage:message delegate:delegate timeInterval:t identifier:0];
 }
 
 + (void)showInView:(UIView *)view withMessage:(NSString *)message
           delegate:(id<MKAToastViewDelegate>)delegate timeInterval:(NSTimeInterval)t identifier:(NSInteger)identifier {
     
+    if (!_config) {
+        _config = [MKAToastViewConfiguration new];
+    }
+    
     MKAToastView *toastView = [[MKAToastView alloc] initWithMessage:message
-                                                              width:MKAToastViewDefaultWidth
-                                                             height:MKAToastViewDefaultHeight];
+                                                              width:_config.width
+                                                             height:_config.height];
     toastView.delegate = delegate;
     toastView.identifier = identifier;
     [toastView showInView:view withTimeInterval:t];
 }
 
++ (void)setDefaultConfiguration:(MKAToastViewConfiguration *)config {
+    _config = config;
+}
+
 @end
+
+#pragma mark - MKAToastViewConfiguration
+
+@implementation MKAToastViewConfiguration
+
+- (instancetype)init {
+    self = [super init];
+    
+    if (self) {
+        _width = MKAToastViewDefaultWidth;
+        _height = MKAToastViewDefaultHeight;
+    }
+    
+    return self;
+}
+
+@end
+

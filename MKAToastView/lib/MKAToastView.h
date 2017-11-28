@@ -27,6 +27,7 @@ UIKIT_EXTERN const CGFloat MKAToastViewDefaultWidth;
  */
 UIKIT_EXTERN const CGFloat MKAToastViewDefaultHeight;
 
+@class MKAToastViewConfiguration;
 @protocol MKAToastViewDelegate;
 
 /**
@@ -77,6 +78,9 @@ UIKIT_EXTERN const CGFloat MKAToastViewDefaultHeight;
 + (void)showInView:(UIView *)view withMessage:(NSString *)message
           delegate:(nullable id<MKAToastViewDelegate>)delegate timeInterval:(NSTimeInterval)t
         identifier:(NSInteger)identifier;
+/**
+ */
++ (void)setDefaultConfiguration:(MKAToastViewConfiguration *)config;
 @end
 
 @protocol MKAToastViewDelegate <NSObject>
@@ -89,6 +93,17 @@ UIKIT_EXTERN const CGFloat MKAToastViewDefaultHeight;
  ToastViewが消えた直後に呼ばれます
  */
 - (void)toastViewDidDisappear:(MKAToastView *)toastView;
+@end
+
+@interface MKAToastViewConfiguration : NSObject
+/**
+ ToastViewのデフォルトの幅
+ */
+@property (nonatomic) CGFloat width;
+/**
+ ToastViewのデフォルトの高さ
+ */
+@property (nonatomic) CGFloat height;
 @end
 
 NS_ASSUME_NONNULL_END
