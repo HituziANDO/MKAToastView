@@ -129,7 +129,10 @@ static MKAToastViewConfiguration *_config = nil;
 }
 
 + (void)setDefaultConfiguration:(MKAToastViewConfiguration *)config {
-    _config = config;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _config = [config copy];
+    });
 }
 
 @end
@@ -147,6 +150,13 @@ static MKAToastViewConfiguration *_config = nil;
     }
     
     return self;
+}
+
+- (instancetype)copy {
+    MKAToastViewConfiguration *config = [MKAToastViewConfiguration new];
+    config.width = self.width;
+    config.height = self.height;
+    return config;
 }
 
 @end

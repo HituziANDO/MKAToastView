@@ -19,6 +19,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    
+    MKAToastViewConfiguration *config = [MKAToastViewConfiguration new];
+    config.width = 200.f;
+    config.height = 50.f;
+    [MKAToastView setDefaultConfiguration:config];
 }
 
 

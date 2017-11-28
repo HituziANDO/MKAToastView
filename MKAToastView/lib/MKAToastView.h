@@ -95,6 +95,8 @@ UIKIT_EXTERN const CGFloat MKAToastViewDefaultHeight;
 - (void)toastViewDidDisappear:(MKAToastView *)toastView;
 @end
 
+/**
+ */
 @interface MKAToastViewConfiguration : NSObject
 /**
  ToastViewのデフォルトの幅
