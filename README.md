@@ -5,19 +5,20 @@ Android-like Toast view.
 
 # Usage
 
-```
+```ObjC
 #import "MKAToastView.h"
 
 ...
 
 // Show.
-[MKAToastView showInView:self.view withMessage:@"Hello World!" delegate:nil timeInterval:MKAToastViewShortTime];
+[MKAToastView showInView:self.view withMessage:@"Hello World!" 
+                delegate:nil timeInterval:MKAToastViewShortTime];
 
 ```
 
 ### Delegate
 
-```
+```ObjC
 @interface ViewController () <MKAToastViewDelegate>
 
 @end
