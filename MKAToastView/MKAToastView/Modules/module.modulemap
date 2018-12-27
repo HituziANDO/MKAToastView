@@ -1,0 +1,6 @@
+framework module MKAToastView {
+  umbrella header "MKAToastView.h"
+
+  export *
+  module * { export * }
+}

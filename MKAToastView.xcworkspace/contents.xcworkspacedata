@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:MKAToastView/MKAToastView.xcodeproj">
+   </FileRef>
+   <Group
+      location = "container:Sample"
+      name = "Sample">
+      <FileRef
+         location = "group:ObjC/MKAToastViewSample.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Swift/MKAToastViewSwiftSample.xcodeproj">
+      </FileRef>
+   </Group>
+</Workspace>
