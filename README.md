@@ -3,14 +3,23 @@ MKAToastView
 
 ***MKAToastView is the view that disappears automatically after displaying a short message for a few seconds like Android's Toast.***
 
+<img src="./README/images/sample1.gif" width="300">
 
 ## Include in your iOS app
 
 ### CocoaPods
-TBA
+
+MKAToastView is available through [CocoaPods](http://cocoapods.org). To install
+it, simply add the following line to your Podfile:
+
+```ruby
+pod "MKAToastView"
+```
 
 ### Manual Installation
-TBA
+
+1. Download latest [MKAToastView](https://github.com/HituziANDO/MKAToastView/releases)
+1. Drag & Drop MKAToastView.framework into your Xcode project
 
 ## Usage
 
@@ -35,7 +44,7 @@ TBA
 	```objc
 	[MKAToast showInView:self.view
 	         withMessage:@"Hello"
-	            delegate:self
+	            delegate:nil
 	        timeInterval:MKAToastShortTime];
 	```
 	
@@ -44,7 +53,7 @@ TBA
 	```swift
 	MKAToast.show(in: self.view,
                   withMessage: "Hello",
-                  delegate: self,
+                  delegate: nil,
                   timeInterval: MKAToastShortTime)
 	```
 	
@@ -88,10 +97,10 @@ TBA
 
 ```swift
 class ViewController: UIViewController, MKAToastDelegate {
-	
-	...
-	
-	@IBAction func helloButtonPressed(_ sender: Any) {
+    
+    ...
+    
+    @IBAction func helloButtonPressed(_ sender: Any) {
         MKAToast.show(in: self.view,
                       withMessage: "Hello",
                       delegate: self,
@@ -102,11 +111,11 @@ class ViewController: UIViewController, MKAToastDelegate {
     ...
     
     /// MARK: - MKAToastDelegate
-
+    
     func toastWillDisappear(_ toast: MKAToast) {
         print("Toast ID: \(toast.identifier) will disappear");
     }
-
+    
     func toastDidDisappear(_ toast: MKAToast) {
         print("Toast ID: \(toast.identifier) did disappear");
     }
