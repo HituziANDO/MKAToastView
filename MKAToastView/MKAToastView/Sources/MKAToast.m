@@ -75,7 +75,7 @@ static MKAToastConfiguration *_config = nil;
 #pragma mark - public method
 
 - (void)showWithTimeInterval:(NSTimeInterval)t {
-    UIView *view = [UIApplication sharedApplication].keyWindow.rootViewController.view;
+    UIView *view = [UIApplication sharedApplication].keyWindow.subviews.lastObject;
     [view addSubview:self];
 
     self.alpha = 0;
