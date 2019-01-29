@@ -3,7 +3,7 @@
 //  MKAToastView
 //
 //  Created by Masaki Ando
-//  Copyright (c) 2018 Hituzi Ando. All rights reserved.
+//  Copyright (c) 2018-2019 Hituzi Ando. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
@@ -14,11 +14,11 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol MKAToastDelegate;
 
 /**
- * The default short display time for the toast view.
+ * A default short display time for a toast view.
  */
 UIKIT_EXTERN const NSTimeInterval MKAToastShortTime;
 /**
- * The default long display time for the toast view.
+ * A default long display time for a toast view.
  */
 UIKIT_EXTERN const NSTimeInterval MKAToastLongTime;
 
@@ -27,60 +27,58 @@ UIKIT_EXTERN const NSTimeInterval MKAToastLongTime;
  */
 @interface MKAToast : UIView
 /**
- *
+ * A delegate.
  */
 @property (nonatomic, weak, nullable) id <MKAToastDelegate> delegate;
 /**
- * The label.
+ * A label.
  */
 @property (nonatomic, readonly) UILabel *label;
 /**
- * The duration of fade-in and fade-out in seconds.
+ * A duration of fade-in and fade-out in seconds.
  */
 @property (nonatomic) NSTimeInterval animationDuration;
 /**
- * The identification code of the ToastView instance.
+ * An identification code of a toast view instance.
  */
 @property (nonatomic) NSInteger identifier;
 
 /**
- * Initializes the instance with the message, the size and the position.
+ * Initializes an instance with given message, size and position.
  */
 - (instancetype)initWithMessage:(NSString *)message frame:(CGRect)frame;
 /**
- * Initializes the instance with the message and the size. It is placed in the default position.
+ * Initializes an instance with given message, width and height. It is placed in the default position.
  */
 - (instancetype)initWithMessage:(NSString *)message width:(CGFloat)width height:(CGFloat)height;
 /**
- * Initializes the instance with the message and the size. It is placed in the default position.
+ * Initializes an instance with given message and size. It is placed in the default position.
  */
 - (instancetype)initWithMessage:(NSString *)message size:(CGSize)size;
 
 /**
- * Adds the toast view instance to the specified view and shows it fading in / fading out in the specified seconds.
+ * Shows a toast view fading in / fading out in a specified seconds.
  * After fade out, it is separated from the parent view.
  */
-- (void)showInView:(UIView *)view withTimeInterval:(NSTimeInterval)t;
+- (void)showWithTimeInterval:(NSTimeInterval)t;
 
 /**
- * Creates the toast view instance in the specified view and shows it fading in / fading out in the specified seconds.
+ * Creates a toast view instance and shows it fading in / fading out in a specified seconds.
  * After fade out, it is separated from the parent view.
  */
-+ (void)showInView:(UIView *)view
-       withMessage:(NSString *)message
-          delegate:(nullable id <MKAToastDelegate>)delegate
-      timeInterval:(NSTimeInterval)t;
++ (void)showWithMessage:(NSString *)message
+               delegate:(nullable id <MKAToastDelegate>)delegate
+           timeInterval:(NSTimeInterval)t;
 /**
- * Creates the toast view instance in the specified view and shows it fading in / fading out in the specified seconds.
+ * Creates a toast view instance and shows it fading in / fading out in a specified seconds.
  * After fade out, it is separated from the parent view.
  */
-+ (void)showInView:(UIView *)view
-       withMessage:(NSString *)message
-          delegate:(nullable id <MKAToastDelegate>)delegate
-      timeInterval:(NSTimeInterval)t
-        identifier:(NSInteger)identifier;
++ (void)showWithMessage:(NSString *)message
+               delegate:(nullable id <MKAToastDelegate>)delegate
+           timeInterval:(NSTimeInterval)t
+             identifier:(NSInteger)identifier;
 /**
- * Sets the default configuration.
+ * Sets a default configuration.
  */
 + (void)setDefaultConfiguration:(MKAToastConfiguration *)config;
 @end
@@ -88,11 +86,11 @@ UIKIT_EXTERN const NSTimeInterval MKAToastLongTime;
 @protocol MKAToastDelegate <NSObject>
 @optional
 /**
- * Called just before the toast view disappears.
+ * Called just before a toast view disappears.
  */
 - (void)toastWillDisappear:(MKAToast *)toast;
 /**
- * Called immediately after the toast view disappears.
+ * Called immediately after a toast view disappears.
  */
 - (void)toastDidDisappear:(MKAToast *)toast;
 @end

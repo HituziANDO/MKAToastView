@@ -3,7 +3,7 @@
 //  MKAToastView
 //
 //  Created by Masaki Ando
-//  Copyright (c) 2018 Hituzi Ando. All rights reserved.
+//  Copyright (c) 2018-2019 Hituzi Ando. All rights reserved.
 //
 
 #import "MKAToast.h"
@@ -74,7 +74,8 @@ static MKAToastConfiguration *_config = nil;
 
 #pragma mark - public method
 
-- (void)showInView:(UIView *)view withTimeInterval:(NSTimeInterval)t {
+- (void)showWithTimeInterval:(NSTimeInterval)t {
+    UIView *view = [UIApplication sharedApplication].keyWindow.rootViewController.view;
     [view addSubview:self];
 
     self.alpha = 0;
@@ -93,14 +94,17 @@ static MKAToastConfiguration *_config = nil;
                      }];
 }
 
-+ (void)showInView:(UIView *)view withMessage:(NSString *)message
-          delegate:(id <MKAToastDelegate>)delegate timeInterval:(NSTimeInterval)t {
++ (void)showWithMessage:(NSString *)message
+               delegate:(nullable id <MKAToastDelegate>)delegate
+           timeInterval:(NSTimeInterval)t {
 
-    [self showInView:view withMessage:message delegate:delegate timeInterval:t identifier:0];
+    [self showWithMessage:message delegate:delegate timeInterval:t identifier:0];
 }
 
-+ (void)showInView:(UIView *)view withMessage:(NSString *)message
-          delegate:(id <MKAToastDelegate>)delegate timeInterval:(NSTimeInterval)t identifier:(NSInteger)identifier {
++ (void)showWithMessage:(NSString *)message
+               delegate:(nullable id <MKAToastDelegate>)delegate
+           timeInterval:(NSTimeInterval)t
+             identifier:(NSInteger)identifier {
 
     if (!_config) {
         [self setDefaultConfiguration:[MKAToastConfiguration new]];
@@ -109,7 +113,7 @@ static MKAToastConfiguration *_config = nil;
     MKAToast *toast = [[MKAToast alloc] initWithMessage:message width:_config.width height:_config.height];
     toast.delegate = delegate;
     toast.identifier = identifier;
-    [toast showInView:view withTimeInterval:t];
+    [toast showWithTimeInterval:t];
 }
 
 + (void)setDefaultConfiguration:(MKAToastConfiguration *)config {

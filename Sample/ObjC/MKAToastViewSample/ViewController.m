@@ -3,7 +3,7 @@
 //  MKAToastViewSample
 //
 //  Created by Masaki Ando on 2018/12/27.
-//  Copyright © 2018年 Hituzi Ando. All rights reserved.
+//  Copyright © 2018-2019 Hituzi Ando. All rights reserved.
 //
 
 #import <MKAToastView/MKAToastView.h>
@@ -19,7 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    // Sets default configuration.
+    // Sets a default configuration.
     MKAToastConfiguration *config = [MKAToastConfiguration new];
     config.width = 200.f;
     config.height = 50.f;
@@ -29,18 +29,16 @@
 #pragma mark - IBAction
 
 - (IBAction)helloButtonPressed:(id)sender {
-    [MKAToast showInView:self.view
-             withMessage:@"Hello"
-                delegate:self
-            timeInterval:MKAToastShortTime
-              identifier:1];
+    // Shows the toast using the default configuration's size.
+    [MKAToast showWithMessage:@"Hello" delegate:self timeInterval:MKAToastShortTime identifier:1];
 }
 
 - (IBAction)goodbyeButtonPressed:(id)sender {
+    // Shows the toast using a custom size.
     MKAToast *toast = [[MKAToast alloc] initWithMessage:@"Goodbye" width:300.f height:60.f];
     toast.delegate = self;
     toast.identifier = 2;
-    [toast showInView:self.view withTimeInterval:MKAToastLongTime];
+    [toast showWithTimeInterval:MKAToastLongTime];
 }
 
 #pragma mark - MKAToastDelegate
