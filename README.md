@@ -37,24 +37,22 @@ pod "MKAToastView"
 	import MKAToastView
 	```
 
-1. Create and show the short message
+1. Create and show a short message
 	
 	**Objective-C**
 	
 	```objc
-	[MKAToast showInView:self.view
-	         withMessage:@"Hello"
-	            delegate:nil
-	        timeInterval:MKAToastShortTime];
+	[MKAToast showWithMessage:@"Hello"
+	                 delegate:self
+	             timeInterval:MKAToastShortTime];
 	```
 	
 	**Swift**
 	
 	```swift
-	MKAToast.show(in: self.view,
-                  withMessage: "Hello",
-                  delegate: nil,
-                  timeInterval: MKAToastShortTime)
+	MKAToast.show(withMessage: "Hello",
+	              delegate: self,
+	              timeInterval: MKAToastShortTime)
 	```
 	
 ### Delegate
@@ -71,11 +69,10 @@ pod "MKAToastView"
 ...
 
 - (IBAction)helloButtonPressed:(id)sender {
-    [MKAToast showInView:self.view
-             withMessage:@"Hello"
-                delegate:self
-            timeInterval:MKAToastShortTime
-              identifier:1];
+    [MKAToast showWithMessage:@"Hello"
+                     delegate:self
+                 timeInterval:MKAToastShortTime
+                   identifier:1];
 }
 
 ...
@@ -101,8 +98,7 @@ class ViewController: UIViewController, MKAToastDelegate {
     ...
     
     @IBAction func helloButtonPressed(_ sender: Any) {
-        MKAToast.show(in: self.view,
-                      withMessage: "Hello",
+        MKAToast.show(withMessage: "Hello",
                       delegate: self,
                       timeInterval: MKAToastShortTime,
                       identifier: 1)
