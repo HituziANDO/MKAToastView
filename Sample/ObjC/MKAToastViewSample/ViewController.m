@@ -30,12 +30,12 @@
 
 - (IBAction)helloButtonPressed:(id)sender {
     // Shows the toast using the default configuration's size.
-    [MKAToast showWithMessage:@"Hello" delegate:self timeInterval:MKAToastShortTime identifier:1];
+    [MKAToast showText:@"Hello" withDelegate:self timeInterval:MKAToastShortTime identifier:1];
 }
 
 - (IBAction)goodbyeButtonPressed:(id)sender {
     // Shows the toast using a custom size.
-    MKAToast *toast = [[MKAToast alloc] initWithMessage:@"Goodbye" width:300.f height:60.f];
+    MKAToast *toast = [[MKAToast alloc] initWithText:@"Goodbye" width:300.f height:80.f];
     toast.delegate = self;
     toast.identifier = 2;
     [toast showWithTimeInterval:MKAToastLongTime];

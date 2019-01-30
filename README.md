@@ -42,21 +42,19 @@ pod "MKAToastView"
 	**Objective-C**
 	
 	```objc
-	[MKAToast showWithMessage:@"Hello"
-	                 delegate:self
-	             timeInterval:MKAToastShortTime];
+	[MKAToast showText:"@Hello" withTimeInterval:MKAToastShortTime];
 	```
 	
 	**Swift**
 	
 	```swift
-	MKAToast.show(withMessage: "Hello",
-	              delegate: self,
-	              timeInterval: MKAToastShortTime)
+	MKAToast.showText("Hello", withTimeInterval: MKAToastShortTime)
 	```
 	
 ### Delegate
 
+The toast view calls the delegate methods when it is hidden.
+ 
 **Objective-C**
 
 ```objc
@@ -69,10 +67,10 @@ pod "MKAToastView"
 ...
 
 - (IBAction)helloButtonPressed:(id)sender {
-    [MKAToast showWithMessage:@"Hello"
-                     delegate:self
-                 timeInterval:MKAToastShortTime
-                   identifier:1];
+    [MKAToast showText:@"Hello"
+          withDelegate:self
+          timeInterval:MKAToastShortTime
+            identifier:1];
 }
 
 ...
@@ -98,10 +96,10 @@ class ViewController: UIViewController, MKAToastDelegate {
     ...
     
     @IBAction func helloButtonPressed(_ sender: Any) {
-        MKAToast.show(withMessage: "Hello",
-                      delegate: self,
-                      timeInterval: MKAToastShortTime,
-                      identifier: 1)
+        MKAToast.showText("Hello",
+                          with: self,
+                          timeInterval: MKAToastShortTime,
+                          identifier: 1)
     }
     
     ...

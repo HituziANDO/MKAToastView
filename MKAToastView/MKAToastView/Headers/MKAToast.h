@@ -44,17 +44,17 @@ UIKIT_EXTERN const NSTimeInterval MKAToastLongTime;
 @property (nonatomic) NSInteger identifier;
 
 /**
- * Initializes an instance with given message, size and position.
+ * Initializes an instance with given text, size and position.
  */
-- (instancetype)initWithMessage:(NSString *)message frame:(CGRect)frame;
+- (instancetype)initWithText:(NSString *)text frame:(CGRect)frame;
 /**
- * Initializes an instance with given message, width and height. It is placed in the default position.
+ * Initializes an instance with given text, width and height. It is placed in the default position.
  */
-- (instancetype)initWithMessage:(NSString *)message width:(CGFloat)width height:(CGFloat)height;
+- (instancetype)initWithText:(NSString *)text width:(CGFloat)width height:(CGFloat)height;
 /**
- * Initializes an instance with given message and size. It is placed in the default position.
+ * Initializes an instance with given text and size. It is placed in the default position.
  */
-- (instancetype)initWithMessage:(NSString *)message size:(CGSize)size;
+- (instancetype)initWithText:(NSString *)text size:(CGSize)size;
 
 /**
  * Shows a toast view fading in / fading out in a specified seconds.
@@ -66,17 +66,22 @@ UIKIT_EXTERN const NSTimeInterval MKAToastLongTime;
  * Creates a toast view instance and shows it fading in / fading out in a specified seconds.
  * After fade out, it is separated from the parent view.
  */
-+ (void)showWithMessage:(NSString *)message
-               delegate:(nullable id <MKAToastDelegate>)delegate
-           timeInterval:(NSTimeInterval)t;
++ (void)showText:(NSString *)text withTimeInterval:(NSTimeInterval)t;
 /**
  * Creates a toast view instance and shows it fading in / fading out in a specified seconds.
  * After fade out, it is separated from the parent view.
+ * The toast view calls the delegate methods of given `delegate` when the toast view is hidden.
  */
-+ (void)showWithMessage:(NSString *)message
-               delegate:(nullable id <MKAToastDelegate>)delegate
-           timeInterval:(NSTimeInterval)t
-             identifier:(NSInteger)identifier;
++ (void)showText:(NSString *)text withDelegate:(nullable id <MKAToastDelegate>)delegate timeInterval:(NSTimeInterval)t;
+/**
+ * Creates a toast view instance and shows it fading in / fading out in a specified seconds.
+ * After fade out, it is separated from the parent view.
+ * The toast view calls the delegate methods of given `delegate` with given ID when the toast view is hidden.
+ */
++ (void)showText:(NSString *)text
+    withDelegate:(nullable id <MKAToastDelegate>)delegate
+    timeInterval:(NSTimeInterval)t
+      identifier:(NSInteger)identifier;
 /**
  * Sets a default configuration.
  */

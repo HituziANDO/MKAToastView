@@ -25,12 +25,12 @@ class ViewController: UIViewController, MKAToastDelegate {
 
     @IBAction func helloButtonPressed(_ sender: Any) {
         // Shows the toast using the default configuration's size.
-        MKAToast.show(withMessage: "Hello", delegate: self, timeInterval: MKAToastShortTime, identifier: 1)
+        MKAToast.showText("Hello", with: self, timeInterval: MKAToastShortTime, identifier: 1)
     }
 
     @IBAction func goodbyeButtonPressed(_ sender: Any) {
         // Shows the toast using a custom size.
-        let toast = MKAToast(message: "Goodbye", width: 300.0, height: 60.0)
+        let toast = MKAToast(text: "Goodbye", width: 300.0, height: 80.0)
         toast.delegate = self
         toast.identifier = 2
         toast.show(withTimeInterval: MKAToastLongTime)
