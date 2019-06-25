@@ -74,24 +74,37 @@ UIKIT_EXTERN const NSTimeInterval MKAToastLongTime;
 
 /**
  * Shows a toast view fading in / fading out in a specified seconds.
- * After fade out, it is separated from the parent view.
+ * After fading out, it is separated from the parent view.
  */
 - (void)showWithTimeInterval:(NSTimeInterval)t;
+/**
+ * Shows a toast view fading in after specified delay.
+ * After fading out, it is separated from the parent view.
+ */
+- (void)showWithTimeInterval:(NSTimeInterval)t delay:(NSTimeInterval)delay;
 
 /**
  * Creates a toast view instance and shows it fading in / fading out in a specified seconds.
- * After fade out, it is separated from the parent view.
+ * After fading out, it is separated from the parent view.
  */
 + (void)showText:(NSString *)text withTimeInterval:(NSTimeInterval)t;
 /**
- * Creates a toast view instance and shows it fading in / fading out in a specified seconds.
- * After fade out, it is separated from the parent view.
- * The toast view calls the delegate methods of given `delegate` when the toast view is hidden.
+ * Creates a toast view instance and shows it fading in after specified delay.
+ * After fading out, it is separated from the parent view.
  */
-+ (void)showText:(NSString *)text withDelegate:(nullable id <MKAToastDelegate>)delegate timeInterval:(NSTimeInterval)t;
++ (void)showText:(NSString *)text withTimeInterval:(NSTimeInterval)t delay:(NSTimeInterval)delay;
 /**
  * Creates a toast view instance and shows it fading in / fading out in a specified seconds.
- * After fade out, it is separated from the parent view.
+ * After fading out, it is separated from the parent view.
+ * The toast view calls the delegate methods of given `delegate` when the toast view is hidden.
+ */
++ (void)showText:(NSString *)text
+    withDelegate:(nullable id <MKAToastDelegate>)delegate
+    timeInterval:(NSTimeInterval)t DEPRECATED_MSG_ATTRIBUTE(
+    "Use `+showText:withDelegate:timeInterval:identifier:` instead of this.");
+/**
+ * Creates a toast view instance and shows it fading in / fading out in a specified seconds.
+ * After fading out, it is separated from the parent view.
  * The toast view calls the delegate methods of given `delegate` with given ID when the toast view is hidden.
  */
 + (void)showText:(NSString *)text
@@ -99,9 +112,20 @@ UIKIT_EXTERN const NSTimeInterval MKAToastLongTime;
     timeInterval:(NSTimeInterval)t
       identifier:(NSInteger)identifier;
 /**
+ * Creates a toast view instance and shows it fading in after specified delay.
+ * After fading out, it is separated from the parent view.
+ * The toast view calls the delegate methods of given `delegate` with given ID when the toast view is hidden.
+ */
++ (void)showText:(NSString *)text
+    withDelegate:(nullable id <MKAToastDelegate>)delegate
+    timeInterval:(NSTimeInterval)t
+           delay:(NSTimeInterval)delay
+      identifier:(NSInteger)identifier;
+/**
  * Sets a default configuration.
  */
 + (void)setDefaultConfiguration:(MKAToastConfiguration *)config;
+
 @end
 
 @protocol MKAToastDelegate <NSObject>
@@ -114,6 +138,7 @@ UIKIT_EXTERN const NSTimeInterval MKAToastLongTime;
  * Called immediately after a toast view disappears.
  */
 - (void)toastDidDisappear:(MKAToast *)toast;
+
 @end
 
 NS_ASSUME_NONNULL_END

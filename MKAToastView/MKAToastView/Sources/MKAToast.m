@@ -91,12 +91,16 @@ static MKAToastConfiguration *_config = nil;
 #pragma mark - public method
 
 - (void)showWithTimeInterval:(NSTimeInterval)t {
+    [self showWithTimeInterval:t delay:0];
+}
+
+- (void)showWithTimeInterval:(NSTimeInterval)t delay:(NSTimeInterval)delay {
     UIView *view = [UIApplication sharedApplication].keyWindow.subviews.lastObject;
     [view addSubview:self];
 
     self.alpha = 0;
     [UIView animateWithDuration:self.animationDuration
-                          delay:0
+                          delay:delay
                         options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionAllowUserInteraction
                      animations:^{
                          self.alpha = 1.f;
@@ -111,7 +115,11 @@ static MKAToastConfiguration *_config = nil;
 }
 
 + (void)showText:(NSString *)text withTimeInterval:(NSTimeInterval)t {
-    [self showText:text withDelegate:nil timeInterval:t identifier:0];
+    [self showText:text withTimeInterval:t delay:0];
+}
+
++ (void)showText:(NSString *)text withTimeInterval:(NSTimeInterval)t delay:(NSTimeInterval)delay {
+    [self showText:text withDelegate:nil timeInterval:t delay:delay identifier:0];
 }
 
 + (void)showText:(NSString *)text withDelegate:(nullable id <MKAToastDelegate>)delegate timeInterval:(NSTimeInterval)t {
@@ -123,6 +131,15 @@ static MKAToastConfiguration *_config = nil;
     timeInterval:(NSTimeInterval)t
       identifier:(NSInteger)identifier {
 
+    [self showText:text withDelegate:delegate timeInterval:t delay:0 identifier:identifier];
+}
+
++ (void)showText:(NSString *)text
+    withDelegate:(nullable id <MKAToastDelegate>)delegate
+    timeInterval:(NSTimeInterval)t
+           delay:(NSTimeInterval)delay
+      identifier:(NSInteger)identifier {
+
     if (!_config) {
         [self setDefaultConfiguration:[MKAToastConfiguration new]];
     }
@@ -130,7 +147,7 @@ static MKAToastConfiguration *_config = nil;
     MKAToast *toast = [[MKAToast alloc] initWithText:text width:_config.width height:_config.height];
     toast.delegate = delegate;
     toast.identifier = identifier;
-    [toast showWithTimeInterval:t];
+    [toast showWithTimeInterval:t delay:delay];
 }
 
 + (void)setDefaultConfiguration:(MKAToastConfiguration *)config {
